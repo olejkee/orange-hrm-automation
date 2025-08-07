@@ -1,6 +1,9 @@
 # OrangeHRM Test Automation Project
 
-This project contains automated tests for the OrangeHRM demo application using Python, Selenium WebDriver, and pytest.
+This project contains automated tests for the OrangeHRM demo application using Python, Selenium WebDriver, and pytest. The tests cover various functionalities of the OrangeHRM system including user authentication, navigation, and employee management.
+
+This automation framework is built using the Page Object Model (POM) design pattern to ensure maintainability and scalability. It includes comprehensive test coverage for core OrangeHRM features with advanced reporting capabilities.
+
 
 ## Project Structure
 - `pages/` - Page Object Model classes
