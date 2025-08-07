@@ -69,9 +69,10 @@ class MainPage(Base, metaclass=MetaLocator):
     # Methods
 
     def test_left_menu(self):
-        self.click_admin_menu()
-        self.assert_url(self.admin_menu_url)
-        self.click_pim_menu()
-        self.assert_url(self.pim_menu_url)
-        self.click_recruitment_menu()
-        self.assert_url(self.recruitment_menu_url)
+        with allure.step("Test left menu"):
+            self.click_admin_menu()
+            self.assert_url(self.admin_menu_url)
+            self.click_pim_menu()
+            self.assert_url(self.pim_menu_url)
+            self.click_recruitment_menu()
+            self.assert_url(self.recruitment_menu_url)

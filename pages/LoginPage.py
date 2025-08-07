@@ -71,17 +71,18 @@ class LoginPage(Base, metaclass=MetaLocator):
             print('Successful authorization completed')
 
     def unsuccessful_authorization(self):
-        print('Starting unsuccessful authorization')
-        self.driver.get(self.url)
-        self.driver.maximize_window()
-        self.input_user_name('Adminme')
-        self.input_password('admin1221')
-        self.click_login_button()
-        time.sleep(2)
-        # Check for error message
-        try:
-            error_message = self.get_element("unsuccessful_authorization_title").text
-            print(f'Error message: {error_message}')
-        except:
-            print('No error message found')
-        print('Unsuccessful authorization completed')
+        with allure.step("Unsuccessful authorization"):
+            print('Starting unsuccessful authorization')
+            self.driver.get(self.url)
+            self.driver.maximize_window()
+            self.input_user_name('Adminme')
+            self.input_password('admin1221')
+            self.click_login_button()
+            time.sleep(2)
+            # Check for error message
+            try:
+                error_message = self.get_element("unsuccessful_authorization_title").text
+                print(f'Error message: {error_message}')
+            except:
+                print('No error message found')
+            print('Unsuccessful authorization completed')

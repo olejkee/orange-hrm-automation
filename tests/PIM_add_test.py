@@ -1,5 +1,6 @@
 # tests/PIM_add_test.py
 import pytest
+import allure
 from pages.PimPage import PimPage
 from utilities.logger import Logger
 

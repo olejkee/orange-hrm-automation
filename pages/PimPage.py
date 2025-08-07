@@ -3,6 +3,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import allure
 import time
 
 from base.base_class import Base
@@ -128,47 +129,49 @@ class PimPage(Base, metaclass=MetaLocator):
         print("Verified Add Employee page")
         
     def add_employee(self, first_name, last_name, employee_id):
-        """Add a new employee with the given details"""
-        # Navigate to PIM page
-        self.click_pim_menu()
-        time.sleep(2)
-        self.verify_pim_page()
-        
-        # Click Add button
-        self.click_add_button()
-        time.sleep(2)
-        self.verify_add_employee_page()
-        
-        # Fill in employee details
-        self.input_first_name(first_name)
-        time.sleep(2)
-        self.input_last_name(last_name)
-        time.sleep(2)
-        self.input_employee_id(employee_id)
-        time.sleep(2)
-        
-        # Save employee
-        self.click_save_button()
-        time.sleep(2) 
-        
-        # Return to PIM page
-        self.click_pim_menu()
-        time.sleep(2)  
-        self.verify_pim_page()
+        with allure.step("Add employee"):
+            """Add a new employee with the given details"""
+            # Navigate to PIM page
+            self.click_pim_menu()
+            time.sleep(2)
+            self.verify_pim_page()
+            
+            # Click Add button
+            self.click_add_button()
+            time.sleep(2)
+            self.verify_add_employee_page()
+            
+            # Fill in employee details
+            self.input_first_name(first_name)
+            time.sleep(2)
+            self.input_last_name(last_name)
+            time.sleep(2)
+            self.input_employee_id(employee_id)
+            time.sleep(2)
+            
+            # Save employee
+            self.click_save_button()
+            time.sleep(2) 
+            
+            # Return to PIM page
+            self.click_pim_menu()
+            time.sleep(2)  
+            self.verify_pim_page()
         
     def verify_employee_in_list(self, first_name, last_name, employee_id):
-        """Search for employee and verify details"""
-        # Search for employee
-        self.search_employee(first_name)
-        
-        # Get found employee details
-        found_id = self.get_found_employee_id()
-        found_first_name = self.get_found_employee_first_name()
-        found_last_name = self.get_found_employee_last_name()
-        
-        # Verify details
-        assert found_id == employee_id, f"Expected employee ID {employee_id}, but found {found_id}"
-        assert found_first_name == first_name, f"Expected first name {first_name}, but found {found_first_name}"
-        assert found_last_name == last_name, f"Expected last name {last_name}, but found {found_last_name}"
-        
-        print(f"Employee verified successfully: {first_name} {last_name} (ID: {employee_id})")
+        with allure.step("Verify employee in list"):
+            """Search for employee and verify details"""
+            # Search for employee
+            self.search_employee(first_name)
+            
+            # Get found employee details
+            found_id = self.get_found_employee_id()
+            found_first_name = self.get_found_employee_first_name()
+            found_last_name = self.get_found_employee_last_name()
+            
+            # Verify details
+            assert found_id == employee_id, f"Expected employee ID {employee_id}, but found {found_id}"
+            assert found_first_name == first_name, f"Expected first name {first_name}, but found {found_first_name}"
+            assert found_last_name == last_name, f"Expected last name {last_name}, but found {found_last_name}"
+            
+            print(f"Employee verified successfully: {first_name} {last_name} (ID: {employee_id})")
